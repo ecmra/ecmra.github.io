@@ -1,13 +1,9 @@
 # notes
 
- 
-
-test of github rendering capabilities
-
-$x_{ij}^3 + \int_0^{+\infty} \cos x dx$
+[[./notes/html/ld_library_path_in_mathematica.html][plots from cmd line in mathematica]]
 
 
-not too bad, when translated from emacs.
+
 
 
 

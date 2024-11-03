@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2024-11-03 Sun 18:49 -->
+<!-- 2024-11-03 Sun 18:45 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>&lrm;</title>
+<title><code>LD_LIBRARY_PATH</code> in Mathematica</title>
 <meta name="generator" content="Org mode" />
 <meta name="author" content="ecmra" />
 <style type="text/css">
@@ -242,13 +242,59 @@ for the JavaScript code in this tag.
 </head>
 <body>
 <div id="content">
+<h1 class="title"><code>LD_LIBRARY_PATH</code> in Mathematica</h1>
 <p>
-<a href="./notes/html/ld_library_path_in_mathematica.html">plots from cmd line in mathematica</a>
+When using <code>Mathematica</code> from the command line it is not possible to
+get a plot in a straightforward way; the command <code>Plot</code>, for example,
+replies with <code>Graphics</code> instead of actually producing a figure.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-mathematica">In[1]:= Plot[Sin[x],{x,0,Pi}]
+
+Out[1]= -Graphics-
+</pre>
+</div>
+
+<p>
+One possible way to circumvent this limitation is to export the plot
+as a <code>.png</code> and call a viewer from the <code>Mathematica</code> session.
+I tried out such a solution as described for example here:
+<a href="https://mathematica.stackexchange.com/questions/121526/">https://mathematica.stackexchange.com/questions/121526/</a>
+but it did not give the correct result in my case (Ubuntu laptop) because 
+<code>display</code> does not work properly
+when called from <code>Mathematica</code> (altough it works fine when called from the 
+command line). This is due to the fact that, as I discovered after some fumbling, <code>Mathematica</code> 
+redefines <code>LD_LIBRARY_PATH</code>, hence confusing <code>display</code>. 
+</p>
+
+<p>
+The solution I found is to reset <code>LD_LIBRARY_PATH</code> when launching <code>display</code>. 
+For example
+</p>
+<div class="org-src-container">
+<pre class="src src-mathematica">g = Plot[Sin[x],{x,0,Pi}]
+Export["g.png", g]
+Run["display g.png"]
+</pre>
+</div>
+<p>
+does not work but
+</p>
+<div class="org-src-container">
+<pre class="src src-mathematica">g = Plot[Sin[x],{x,0,Pi}]
+Export["g.png", g]
+Run["export LD_LIBRARY_PATH=''; display g.png"]
+</pre>
+</div>
+<p>
+works as expected (and can be automatized using the code in the link above).
 </p>
 </div>
 <div id="postamble" class="status">
+<p class="date">Date: 2023-02-09 Thu 00:00</p>
 <p class="author">Author: ecmra</p>
-<p class="date">Created: 2024-11-03 Sun 18:49</p>
+<p class="date">Created: 2024-11-03 Sun 18:45</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
