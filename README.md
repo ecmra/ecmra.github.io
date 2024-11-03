@@ -2,5 +2,7 @@
 
 test of github rendering capabilities
 
-$x_{ij}^3 + \int_0^{\+\infty} \cos x dx$
+$x_{ij}^3 + \int_0^{+\infty} \cos x dx$
+
+
 
