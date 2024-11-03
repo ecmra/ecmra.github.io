@@ -1,9 +1,13 @@
-# first page
+# notes
+
+ 
 
 test of github rendering capabilities
 
 $x_{ij}^3 + \int_0^{+\infty} \cos x dx$
 
 
-not so good, it does not use mathml
+not too bad, when translated from emacs.
+
+
 
