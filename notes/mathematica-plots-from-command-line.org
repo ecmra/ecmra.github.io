@@ -1,0 +1,40 @@
+#+TITLE: Mathematica plots from command line
+#+DATE: [2023-02-09 Thu]
+#+OPTIONS: toc:nil num:nil
+#+LATEX_HEADER: \bibliographystyle{plain}
+#+HTML_HEAD: <link rel="stylesheet" href="style.css" type="text/css" media="screen" charset="utf-8" /> 
+
+When using ~Mathematica~ from the command line it is not possible to
+get a plot in a straightforward way; the command ~Plot~, for example,
+replies with ~Graphics~ instead of actually producing a figure.
+
+#+BEGIN_SRC mathematica
+In[1]:= Plot[Sin[x],{x,0,Pi}]
+
+Out[1]= -Graphics-
+#+END_SRC
+
+One possible way to circumvent this limitation is to export the plot
+as a ~.png~ and call a viewer from the ~Mathematica~ session.
+I tried out such a solution as described for example here:
+[[https://mathematica.stackexchange.com/questions/121526/]]
+but it did not give the correct result in my case (Ubuntu laptop) because 
+~display~ does not work properly
+when called from ~Mathematica~ (altough it works fine when called from the 
+command line). This is due to the fact that ~Mathematica~ 
+redefines ~LD_LIBRARY_PATH~. 
+
+The solution I found is to reset ~LD_LIBRARY_PATH~ when launching ~display~. 
+For example
+#+BEGIN_SRC mathematica
+g = Plot[Sin[x],{x,0,Pi}]
+Export["g.png", g]
+Run["display g.png"]
+#+END_SRC
+does not work but
+#+BEGIN_SRC mathematica
+g = Plot[Sin[x],{x,0,Pi}]
+Export["g.png", g]
+Run["export LD_LIBRARY_PATH=''; display g.png"]
+#+END_SRC
+works as expected.
