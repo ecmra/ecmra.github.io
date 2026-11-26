@@ -53,7 +53,7 @@ h2, .h2 {
 h3, .h3 {
   font-size: 20px;
   font-weight: normal;
-  text-decoration: underline;
+  #text-decoration: underline;
   margin-top: 2em;
   margin-bottom: -0.6em;
 }
@@ -115,7 +115,7 @@ article {
 }
 
 a {
-  color: #09b;
+  color: #1079AC;
   text-decoration: none;
 }
 

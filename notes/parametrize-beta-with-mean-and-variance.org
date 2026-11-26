@@ -1,0 +1,31 @@
+#+TITLE: Parametrizing the Beta distribution with mean and variance
+#+DATE: [2026-11-26 Thu]
+#+OPTIONS: toc:nil num:nil
+#+LATEX_HEADER: \bibliographystyle{plain}
+#+HTML_HEAD: <link rel="stylesheet" href="style.css" type="text/css" media="screen" charset="utf-8" />
+
+The beta distribution is
+
+\[\mbox{Beta}(p | \alpha, \beta)=
+\frac{\Gamma(\alpha) \Gamma(\beta)}{\Gamma(\alpha+\beta)}
+p^{(\alpha-1)}(1-p)^{(\beta-1)} \]
+
+where $\Gamma(z)=\int_0^{+\infty} t^{z-1}\exp(-t) dt$
+
+If $p \sim \mbox{Beta}(p | \alpha, \beta)$ then
+
+\begin{eqnarray*}
+E[p] & = \mu =  & \frac{\alpha}{\alpha+\beta} \\
+\mbox{Var}[p] & = \sigma^2 & = \frac{\alpha\beta}{(\alpha + \beta)^2(\alpha + \beta +1)} 
+\end{eqnarray*}
+
+From the equation for the variance one has
+$\sigma^2 = \frac{\mu(1-\mu)}{(\alpha+\beta+1)}$ and therefore
+$\alpha = \frac{\mu(\mu(1-\mu)-\sigma^2)}{\sigma^2}$ and
+$\beta=\alpha\frac{1-\mu}{\mu}$.
+
+Hence Beta can be expressed in terms $\alpha,\beta$ or equivalently  in terms
+of its mean and variance. Since $\alpha > 0$, one has
+$\mu(1-\mu)  - \sigma^2 > 0$ /i.e./ $\sigma^2 < \mu(1-\mu)$.
+
+
