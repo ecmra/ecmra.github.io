@@ -7,7 +7,7 @@
 The beta distribution is
 
 \[\mbox{Beta}(p | \alpha, \beta)=
-\frac{\Gamma(\alpha) \Gamma(\beta)}{\Gamma(\alpha+\beta)}
+\frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha) \Gamma(\beta)}
 p^{(\alpha-1)}(1-p)^{(\beta-1)} \]
 
 where $\Gamma(z)=\int_0^{+\infty} t^{z-1}\exp(-t) dt$
